@@ -5,13 +5,13 @@ First, install the project dependeces and husky git hooks:
 ```bash
 yarn install
 ```
-Then, run the developemnt server with:
+Then, run the developement server with:
 
 ```bash
 yarn dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:6060](http://localhost:6060) with your browser to see the result.
 
 ## Tests and Lints
 
