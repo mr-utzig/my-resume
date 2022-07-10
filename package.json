@@ -7,9 +7,10 @@
   "repository": "https://github.com/mr-utzig/my-resume",
   "license": "MIT",
   "scripts": {
-    "start": "next start",
-    "build": "next build",
-    "dev": "next dev",
+    "start": "next start -p 6060",
+    "build:production": "next build --profile",
+    "build:debug": "next build --debug",
+    "dev": "next dev -p 6060",
     "prepare": "husky install",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test:verbose": "jest --passWithNoTests --runInBand",
