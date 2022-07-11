@@ -11,11 +11,13 @@
     "build:production": "next build --profile",
     "build:debug": "next build --debug",
     "dev": "next dev -p 6060",
-    "prepare": "husky install",
+    "lint": "eslint .",
+    "lint:fix": "yarn lint --fix",
     "test": "jest --passWithNoTests --silent --noStackTrace --runInBand",
     "test:verbose": "jest --passWithNoTests --runInBand",
-    "test:staged": "yarn test -- --findRelatedTests",
-    "test:ci": "yarn test -- --coverage"
+    "test:staged": "yarn test --findRelatedTests",
+    "test:ci": "yarn test --coverage",
+    "prepare": "husky install"
   },
   "dependencies": {
     "@heroicons/react": "^1.0.6",

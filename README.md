@@ -5,7 +5,7 @@ First, install the project dependeces and husky git hooks:
 ```bash
 yarn install
 ```
-Then, run the developement server with:
+Then, run the development server with:
 
 ```bash
 yarn dev
