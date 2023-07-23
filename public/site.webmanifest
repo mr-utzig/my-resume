@@ -1,0 +1,21 @@
+{
+  "name": "Luiz Otavio Utzig | Accomplished Software Developer Delivering Innovative Solutions",
+  "short_name": "Luiz Utzig | Software Developer",
+  "start_url": ".",
+  "display": "standalone",
+  "description": "Experienced software developer passionate about delivering innovative solutions. Skilled in full-stack development, collaborating in team environments, and creating efficient code. Committed to driving business growth and enhancing user experiences.",
+  "icons": [
+    {
+      "src": "/icon/android-chrome-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon/android-chrome-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "theme_color": "#444444",
+  "background_color": "#444444"
+}
