@@ -1,36 +1,43 @@
 @font-face {
-  font-family: FiraCode;
+  font-family: "FiraCode";
   font-weight: lighter;
   src: url('../fonts/FiraCodeLight.ttf') format("truetype");
 }
 
 @font-face {
-  font-family: FiraCode;
+  font-family: "FiraCode";
   font-weight: normal;
   src: url('../fonts/FiraCodeRegular.ttf') format("truetype");
 }
 
 @font-face {
-  font-family: FiraCode;
+  font-family: "FiraCode";
   font-weight: bold;
   src: url('../fonts/FiraCodeSemiBold.ttf') format("truetype");
 }
 
 @font-face {
-  font-family: FiraCode;
+  font-family: "FiraCode";
   font-weight: bolder;
   src: url('../fonts/FiraCodeBold.ttf') format("truetype");
 }
 
 :root {
-  font-family: FiraCode;
+  font-family: "FiraCode";
   line-height: 1.5;
   font-size: 10px;
-  font-weight: 400;
 
+  cursor: text;
+
+  --lutzig-dark: #444;
+  --lutzig-light: #f1faff;
+
+  /* #1a1a1a #252529 */
   color-scheme: light dark;
-  color: #f1faff;
-  background-color: #444;
+
+  color: var(--lutzig-light);
+  background-color: var(--lutzig-dark);
+  caret-color: var(--lutzig-light);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -41,15 +48,16 @@
 
 body {
   margin: 0;
-  padding: 0;
-  width: max(320px, 1280px);
+  padding: 1rem;
+  width: max(320px, 100vw);
   min-height: 100dvh;
   box-sizing: border-box;
 }
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #444;
-    background-color: #f1faff;
+    color: var(--lutzig-dark);
+    background-color: var(--lutzig-light);
+    caret-color: var(--lutzig-dark);
   }
 }
