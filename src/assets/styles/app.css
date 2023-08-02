@@ -1,25 +1,13 @@
 @font-face {
   font-family: "FiraCode";
-  font-weight: lighter;
-  src: url('../fonts/FiraCodeLight.ttf') format("truetype");
-}
-
-@font-face {
-  font-family: "FiraCode";
+  src: url('../fonts/FiraCodeRegular.ttf');
   font-weight: normal;
-  src: url('../fonts/FiraCodeRegular.ttf') format("truetype");
 }
 
 @font-face {
   font-family: "FiraCode";
+  src: url('../fonts/FiraCodeBold.ttf');
   font-weight: bold;
-  src: url('../fonts/FiraCodeSemiBold.ttf') format("truetype");
-}
-
-@font-face {
-  font-family: "FiraCode";
-  font-weight: bolder;
-  src: url('../fonts/FiraCodeBold.ttf') format("truetype");
 }
 
 :root {

@@ -12,15 +12,18 @@
 <style>
     .command-input {
         display: flex;
-        align-items: center;
+        align-items: stretch;
     }
     .ci__username {
+        font-weight: bold;
         color: #8a61da;
     }
     .ci__domain {
+        font-weight: bold;
         color: #c2544f;
     }
     .ci__pwd {
+        font-weight: bold;
         color: #a6e22e;
         margin: 0 0.5rem;
     }
