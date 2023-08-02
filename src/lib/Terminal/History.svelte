@@ -10,10 +10,3 @@
     </TerminalInfo>
     <span class="response">{command.response}</span>
 {/each}
-
-<style>
-    .input,
-    .response {
-        flex: 1;
-    }
-</style>
