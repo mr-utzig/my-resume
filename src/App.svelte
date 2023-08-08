@@ -16,7 +16,7 @@
 			const target = e.target as HTMLInputElement;
 			const input = target.value.split(" ");
 
-			console.log(input)
+			console.log(input);
 		}
 	}
 
@@ -30,12 +30,14 @@
 	<TerminalHistory {history} />
 	<TerminalInfo>
 		<span class="fake-ci__input">{command}</span>
-		<span class="fake-ci__cursor" />
+		<span
+			class="fake-ci__cursor"
+		/>
 	</TerminalInfo>
 	<input
 		type="text"
 		id="hiddenInput"
-		bind:value={command}	
+		bind:value={command}
 		on:keypress={processCommandInput}
 	/>
 </main>
@@ -43,6 +45,9 @@
 <style>
 	.terminal {
 		font-size: 1.5rem;
+	}
+	.fake-ci__input {
+		white-space: pre;
 	}
 	.fake-ci__cursor {
 		width: 1rem;
