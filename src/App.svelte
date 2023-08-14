@@ -3,42 +3,99 @@
 	import TerminalHistory from "./lib/Terminal/History.svelte";
 
 	let command: string = "";
-	const history: ICommandHistory[] = [
-		{
-			input: "cerveja",
-			response: "mim de papai",
-			path: "~/juca",
-		},
-	];
+	let wd: string = "";
+	const history: ICommandHistory[] = [];
 
-	function processCommandInput(e: KeyboardEvent) {
-		if (e.key === "Enter") {
-			const target = e.target as HTMLInputElement;
-			const input = target.value.split(" ");
+	let hiddenInput: HTMLInputElement;
+	let inputCursor: HTMLSpanElement;
+	let inputCursorPosition: number = 0;
+	let inputCursorSize: number = 0.923;
 
-			console.log(input);
+	function processCommandInput(e: KeyboardEvent): void {
+		switch (e.key) {
+			case "Enter":
+				try {
+					const target = e.target as HTMLInputElement;
+
+					const input = target.value.split(" ");
+					const command = input.shift();
+					const flasgs = input.filter((i) =>
+						i.match(/\-{1,2}\w{1,}/gi)
+					);
+					const parameters = input.filter((i) =>
+						i.match(/(?!-)^\S+$/gi)
+					);
+
+					console.log(input, command, flasgs, parameters);
+				} catch (e) {
+					console.log(e);
+
+					history.push({
+						input: e.input,
+						response: e.response,
+						path: e.path,
+					});
+				} finally {
+					hiddenInput.value = "";
+				}
+
+				break;
+			case "ArrowLeft":
+				console.log(
+					"LEFT",
+					command.length,
+					inputCursorSize,
+					command.length * inputCursorSize,
+					inputCursorPosition
+				);
+
+				if (command.length * inputCursorSize > Math.abs(inputCursorPosition)) {
+					inputCursorPosition -= inputCursorSize;
+					inputCursor.style.left = `${inputCursorPosition}rem`;
+				}
+
+				break;
+			case "ArrowRight":
+				console.log(
+					"RIGHT",
+					command.length,
+					inputCursorSize,
+					command.length * inputCursorSize,
+					inputCursorPosition
+				);
+
+				if ((command.length * inputCursorSize) > 0) {
+					inputCursorPosition += inputCursorSize;
+					inputCursor.style.left = `${inputCursorPosition}rem`;
+				}
+
+				break;
+			case "ArrowUp":
+				break;
+			case "ArrowDown":
+				break;
+			default:
 		}
 	}
 
-	function focusOnHiddenInput() {
-		document.getElementById("hiddenInput").focus();
+	function focusOnHiddenInput(): void {
+		hiddenInput.focus();
 	}
 </script>
 
-<svelte:body on:click={focusOnHiddenInput} />
+<svelte:window on:click={focusOnHiddenInput} />
 <main class="terminal">
 	<TerminalHistory {history} />
-	<TerminalInfo>
+	<TerminalInfo {wd}>
 		<span class="fake-ci__input">{command}</span>
-		<span
-			class="fake-ci__cursor"
-		/>
+		<span class="fake-ci__cursor" bind:this={inputCursor} />
 	</TerminalInfo>
 	<input
 		type="text"
 		id="hiddenInput"
 		bind:value={command}
-		on:keypress={processCommandInput}
+		bind:this={hiddenInput}
+		on:keydown={processCommandInput}
 	/>
 </main>
 
@@ -48,17 +105,18 @@
 	}
 	.fake-ci__input {
 		white-space: pre;
+		background-color: aliceblue;
+		color: black;
 	}
 	.fake-ci__cursor {
-		width: 1rem;
-		/* border: 1px solid #66d9ef;
-		background-color: transparent; */
-		background-color: #66d9ef;
-		margin-left: 0.1rem;
+		position: relative;
+		box-sizing: border-box;
+		width: 0.923rem;
+		/* background-color: #66d9ef; */
+		background-color: transparent;
+		border: 1px solid #66d9ef;
+		/* margin-left: 0.1rem; */
 	}
-	/* .fake-ci__cursor-focus {
-		background-color: #66d9ef;
-	} */
 	input {
 		position: absolute;
 		left: -100%;
