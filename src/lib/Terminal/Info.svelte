@@ -1,11 +1,11 @@
 <script lang="ts">
-    export let pwd: string = "~";
+    export let wd: string = "~";
 </script>
 
 <div class="command-input">
     <span class="ci__username">resume</span>@
     <span class="ci__domain">lutzig</span>:
-    <span class="ci__pwd">{pwd}</span>$&nbsp;
+    <span class="ci__pwd">{wd}</span>$&nbsp;
     <slot />
 </div>
 
