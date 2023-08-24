@@ -12,19 +12,11 @@
 	let fakeInputCursorSize: number = 0.923;
 	let fakeInputCursorPosition: number = 0;
 
-	let fakeInputCursorBackspace: number = 0;
-
-	// 15.691 -> 100
-	// 11.076 -> x
-
-	// 10.153 -> 100
-	// z      -> x
-
 	$: fakeInputSize = command.length * fakeInputCursorSize;
 
 	function inputControlKeyDown(e: KeyboardEvent): void {
 		fakeInput.style.backgroundColor = "transparent";
-		fakeInput.style.color = "#f1faff";
+		fakeInput.style.color = "var(--light-color)";
 
 		switch (e.key) {
 			case "Enter":
@@ -66,20 +58,20 @@
 				}
 
 				break;
-			case "ArrowUp":
-				fakeInputCursorPosition = fakeInputSize;
-				fakeInputCursor.style.left = `-${fakeInputCursorPosition}rem`;
+			case "ArrowDown":
+				fakeInputCursorPosition = -fakeInputSize;
+				fakeInputCursor.style.left = `${fakeInputCursorPosition}rem`;
 
 				break;
-			case "ArrowDown":
+			case "ArrowUp":
 				fakeInputCursorPosition = 0;
 				fakeInputCursor.style.left = `${fakeInputCursorPosition}rem`;
 
 				break;
 			case "a" || "A":
 				if (e.ctrlKey) {
-					fakeInput.style.backgroundColor = "#f1faff";
-					fakeInput.style.color = "#444";
+					fakeInput.style.backgroundColor = "var(--light-color)";
+					fakeInput.style.color = "var(--dark-color)";
 					fakeInputCursorPosition = 0;
 					fakeInputCursor.style.left = `${fakeInputCursorPosition}rem`;
 				}
@@ -91,9 +83,9 @@
 
 		if (fakeInputCursorPosition < 0) {
 			fakeInputCursor.style.backgroundColor = "transparent";
-			fakeInputCursor.style.border = "1px solid #66d9ef";
+			fakeInputCursor.style.border = "1px solid var(--light-color)";
 		} else {
-			fakeInputCursor.style.backgroundColor = "#66d9ef";
+			fakeInputCursor.style.backgroundColor = "var(--light-color)";
 			fakeInputCursor.style.border = "none";
 		}
 	}
@@ -143,14 +135,13 @@
 	}
 	.fake-ci__input {
 		white-space: pre;
-		/* background-color: aliceblue; */
-		/* color: black; */
 	}
 	.fake-ci__cursor {
 		position: relative;
 		box-sizing: border-box;
 		width: 0.923rem;
-		background-color: #66d9ef;
+		background-color: var(--light-color);
+		animation: blink 1.25s ease-in-out infinite;
 	}
 	input {
 		position: absolute;
@@ -161,5 +152,10 @@
 		background-color: transparent;
 		caret-color: transparent;
 		padding: 0;
+	}
+	@keyframes blink {
+		50% {
+			opacity: 0;
+		}
 	}
 </style>

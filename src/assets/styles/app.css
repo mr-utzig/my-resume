@@ -17,15 +17,11 @@
 
   cursor: text;
 
-  --lutzig-dark: #444;
-  --lutzig-light: #f1faff;
+  --light-color: #F8F8F2;
+  --dark-color: #272822;
 
-  /* #1a1a1a #252529 */
-  color-scheme: light dark;
-
-  color: var(--lutzig-light);
-  background-color: var(--lutzig-dark);
-  caret-color: var(--lutzig-light);
+  color: var(--light-color);
+  background-color: var(--dark-color);
 
   font-synthesis: none;
   text-rendering: optimizeLegibility;
@@ -40,12 +36,4 @@ body {
   width: max(320px, 100vw);
   min-height: 100dvh;
   box-sizing: border-box;
-}
-
-@media (prefers-color-scheme: light) {
-  :root {
-    color: var(--lutzig-dark);
-    background-color: var(--lutzig-light);
-    caret-color: var(--lutzig-dark);
-  }
 }
