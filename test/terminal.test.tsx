@@ -43,7 +43,7 @@ describe("Terminal", () => {
         });
     });
 
-    describe("Commands", () => {
-        test("cd",)
-    });
+    // describe("Commands", () => {
+    //     test("cd",)
+    // });
 });
