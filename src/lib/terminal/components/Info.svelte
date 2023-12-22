@@ -3,9 +3,9 @@
 </script>
 
 <div class="command-input">
-    <span class="ci__username">resume</span>@<span class="ci__domain"
-        >lutzig</span
-    >:<span class="ci__pwd">{wd}</span>$&nbsp;
+    <span class="ci__username">resume</span>@
+    <span class="ci__domain">lutzig</span>:
+    <span class="ci__pwd">{wd}</span>$&nbsp;
     <slot />
 </div>
 
@@ -16,15 +16,15 @@
     }
     .ci__username {
         font-weight: bold;
-        color: #a6e22e;
+        color: var(--terminal-green-color);
     }
     .ci__domain {
         font-weight: bold;
-        color: #a6e22e;
+        color: var(--terminal-green-color);
     }
     .ci__pwd {
         font-weight: bold;
-        color: #66d9ef;
+        color: var(--terminal-blue-color);
         margin: 0 0.5rem;
     }
 </style>
