@@ -20,6 +20,10 @@
   --light-color: #F8F8F2;
   --dark-color: #272822;
 
+  --terminal-green-color: #a6e22e;
+  --terminal-blue-color: #66d9ef;
+  --terminal-fake-cursor-width: 0.923rem;
+
   color: var(--light-color);
   background-color: var(--dark-color);
 

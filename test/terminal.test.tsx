@@ -1,8 +1,8 @@
 import "@testing-library/jest-dom";
 import { render, screen } from "@testing-library/svelte";
 import { beforeEach, describe, expect, it, test } from "vitest";
-import THistory from "../src/lib/Terminal/History.svelte";
-import TInfo from "../src/lib/Terminal/Info.svelte";
+import THistory from "../src/lib/terminal/components/History.svelte";
+import TInfo from "../src/lib/terminal/components/Info.svelte";
 
 describe("Terminal", () => {
     describe("History", () => {
