@@ -4,7 +4,7 @@
 
 <div class="command-input">
     <span class="ci__username">resume</span>@
-    <span class="ci__domain">lutzig</span>:
+    <span class="ci__domain">mr-utzig</span>:
     <span class="ci__pwd">{wd}</span>$&nbsp;
     <slot />
 </div>
