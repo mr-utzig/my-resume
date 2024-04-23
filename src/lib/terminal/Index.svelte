@@ -251,14 +251,14 @@
         animation: blink 1.25s linear infinite;
     }
     input {
-        /* position: absolute;
+        position: absolute;
         left: -100%;
         border: none;
         outline: none;
         color: transparent;
         background-color: transparent;
         caret-color: transparent;
-        padding: 0; */
+        padding: 0;
     }
     @keyframes blink {
         50% {
