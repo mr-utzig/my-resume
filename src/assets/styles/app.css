@@ -1,43 +1,55 @@
 @font-face {
-  font-family: "FiraCode";
-  src: url('../fonts/FiraCodeRegular.ttf');
-  font-weight: normal;
+	font-family: "FiraCode";
+	src: url('../fonts/FiraCodeRegular.ttf');
+	font-weight: normal;
 }
 
 @font-face {
-  font-family: "FiraCode";
-  src: url('../fonts/FiraCodeBold.ttf');
-  font-weight: bold;
+	font-family: "FiraCode";
+	src: url('../fonts/FiraCodeBold.ttf');
+	font-weight: bold;
 }
 
 :root {
-  font-family: "FiraCode";
-  line-height: 1.5;
-  font-size: 10px;
+	font-family: "FiraCode";
+	line-height: 1.5;
+	font-size: 10px;
 
-  cursor: text;
+	cursor: text;
 
-  --light-color: #F8F8F2;
-  --dark-color: #272822;
+	--light-color: #F8F8F2;
+	--dark-color: #272822;
 
-  --terminal-green-color: #a6e22e;
-  --terminal-blue-color: #66d9ef;
-  --terminal-fake-cursor-width: 0.923rem;
+	--terminal-green-color: #a6e22e;
+	--terminal-blue-color: #66d9ef;
+	--terminal-fake-cursor-width: 0.923rem;
 
-  color: var(--light-color);
-  background-color: var(--dark-color);
+	color: var(--light-color);
+	background-color: var(--dark-color);
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  -webkit-text-size-adjust: 100%;
+	font-synthesis: none;
+	text-rendering: optimizeLegibility;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	-webkit-text-size-adjust: 100%;
+}
+
+::-webkit-scrollbar {
+	width: .5rem;
+}
+
+::-webkit-scrollbar-track {
+	background: var(--dark-color);
+}
+
+::-webkit-scrollbar-thumb {
+	background: var(--light-color);
 }
 
 body {
-  margin: 0;
-  padding: 1rem;
-  width: max(320px, 100vw);
-  min-height: 100dvh;
-  box-sizing: border-box;
+	margin: 0;
+	padding: 1rem;
+	min-width: 320px;
+	min-height: 100dvh;
+	box-sizing: border-box;
 }

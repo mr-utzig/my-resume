@@ -1,112 +1,26 @@
 <script lang="ts">
-    import { ARRAY_ARROW_KEYS, ARRAY_HORIZONTAL_ARROW_KEYS, FAKE_INPUT_CURSOR_SIZE } from "./constants";
+    import { FAKE_INPUT_CURSOR_SIZE } from "./constants";
     import TerminalHistory from "./components/History.svelte";
     import TerminalInfo from "./components/Info.svelte";
+    import TerminalHeader from "./components/Header.svelte";
+    import { commands } from "./core/Commands";
+    import { input, history, wd } from "./store";
 
-    let command: string = "";
-    let wd: string = "~";
-    const history: ICommandHistory[] = [];
-
+    // Elements
     let hiddenInput: HTMLInputElement;
     let fakeInput: HTMLSpanElement;
     let fakeInputCursor: HTMLSpanElement;
+    // Fake Cursor Position Control
     let fakeInputCursorPosition: number = 0;
-    let lastFakeInputCursorPosition: number = 0;
-    let lastCursorPositionIndex: number = 0;
-    let textWasSelected: boolean = false;
+    let historyLookup: boolean = false;
+    $: historyLookupIndex = $history.length;
 
-    $: fakeInputSize = command.length * FAKE_INPUT_CURSOR_SIZE;
-
-    function inputControlKeyDown(e: KeyboardEvent): void {
-        fakeInput.style.backgroundColor = "transparent";
-        fakeInput.style.color = "var(--light-color)";
-
-        switch (e.key) {
-            case "Enter":
-                try {
-                    const target = e.target as HTMLInputElement;
-
-                    const input = target.value.split(" ");
-                    const command = input.shift();
-                    const flasgs = input.filter((i) =>
-                        i.match(/\-{1,2}\w{1,}/gi),
-                    );
-                    const parameters = input.filter((i) =>
-                        i.match(/(?!-)^\S+$/gi),
-                    );
-
-                    console.log(input, command, flasgs, parameters);
-                } catch (e) {
-                    history.push({
-                        input: e.input,
-                        response: e.response,
-                        path: e.path,
-                    });
-                } finally {
-                    hiddenInput.value = "";
-                }
-
-                break;
-            case "ArrowLeft":
-                if (fakeInputSize > Math.abs(fakeInputCursorPosition)) {
-                    fakeInputCursorPosition -= FAKE_INPUT_CURSOR_SIZE;
-                    fakeInputCursor.style.left = `${fakeInputCursorPosition}rem`;
-                }
-
-                break;
-            case "ArrowRight":
-                if (fakeInputCursorPosition < 0) {
-                    fakeInputCursorPosition += FAKE_INPUT_CURSOR_SIZE;
-                    fakeInputCursor.style.left = `${fakeInputCursorPosition}rem`;
-                }
-
-                break;
-            case "ArrowDown":
-                fakeInputCursorPosition = -fakeInputSize;
-                fakeInputCursor.style.left = `${fakeInputCursorPosition}rem`;
-
-                break;
-            case "ArrowUp":
-                fakeInputCursorPosition = 0;
-                fakeInputCursor.style.left = `${fakeInputCursorPosition}rem`;
-
-                break;
-            case "a" || "A":
-                if (e.ctrlKey) {
-                    fakeInput.style.backgroundColor = "var(--light-color)";
-                    fakeInput.style.color = "var(--dark-color)";
-                    fakeInputCursorPosition = 0;
-                    fakeInputCursor.style.left = `${fakeInputCursorPosition}rem`;
-                }
-
-                break;
-            default:
-                break;
-        }
-    }
-
-    function inputControlKeyUp(e: KeyboardEvent): void {
-        // TODO: Corrigir problema na posicao do cursor do input e do fake
-        if (textWasSelected && !ARRAY_ARROW_KEYS.includes(e.key)) {
-            fakeInputCursorPosition =
-                -Math.floor(
-                    (fakeInputSize * lastCursorPositionIndex) /
-                        lastFakeInputCursorPosition,
-                ) * FAKE_INPUT_CURSOR_SIZE;
-
-            fakeInputCursor.style.left = `${fakeInputCursorPosition}rem`;
-        }
-
-        textWasSelected =
-            (ARRAY_HORIZONTAL_ARROW_KEYS.includes(e.key) && e.shiftKey) ||
-            (textWasSelected && e.key == "Shift");
-        if (textWasSelected) {
-            lastFakeInputCursorPosition = fakeInputSize;
-            lastCursorPositionIndex = Math.abs(
-                fakeInputCursorPosition / FAKE_INPUT_CURSOR_SIZE,
-            );
-        }
-
+    $: fakeInputSize = $input.length * FAKE_INPUT_CURSOR_SIZE;
+    // Fake cursor control:
+    $: if (fakeInputCursor) {
+        // Fake cursor position:
+        fakeInputCursor.style.left = `${fakeInputCursorPosition}rem`;
+        // Fake cursor style:
         if (fakeInputCursorPosition < 0) {
             fakeInputCursor.style.backgroundColor = "transparent";
             fakeInputCursor.style.border = "1px solid var(--light-color)";
@@ -116,25 +30,209 @@
         }
     }
 
+    function setInput(value: string = "") {
+        $input = value;
+    }
+
+    function setFakeInputCursorPosition(value: number) {
+        fakeInputCursorPosition = value;
+    }
+
+    function setHistory(h: ICommandHistory) {
+        $history.push(h);
+        history.set($history);
+    }
+
+    function resetHistoryLookup(resetInput: boolean = false) {
+        historyLookup = false;
+        historyLookupIndex = $history.length;
+
+        if (resetInput) {
+            setInput();
+        }
+    }
+
+    function handleKeyDown(e: KeyboardEvent): void {
+        fakeInput.style.backgroundColor = "transparent";
+        fakeInput.style.color = "var(--light-color)";
+
+        switch (e.key) {
+            case "Enter":
+                try {
+                    const arrInput = $input.split(" ");
+                    const command = arrInput.shift();
+
+                    if (command) {
+                        const internals = commands[command];
+
+                        if (typeof internals === "undefined") {
+                            throw `Command not found: ${command}`;
+                        }
+
+                        const options = arrInput.filter((i) =>
+                            i.match(/\-{1,2}\w{1,}/gi),
+                        );
+
+                        const parameters = arrInput.filter((i) =>
+                            i.match(/(?!-)^\S+$/gi),
+                        );
+
+                        if (
+                            Object.keys(internals.options).length &&
+                            !options.length
+                        ) {
+                            throw `${command}: invalid option`;
+                        }
+
+                        const output = internals.exec({ options, parameters });
+                        if (typeof output !== "undefined") {
+                            setHistory({
+                                ...output,
+                                path: $wd,
+                                input: $input,
+                            });
+                        }
+                    } else {
+                        setHistory({
+                            output: "",
+                            lookup: false,
+                            path: $wd,
+                            input: $input,
+                        });
+                    }
+                } catch (err: any) {
+                    setHistory({
+                        output: err,
+                        lookup: true,
+                        path: $wd,
+                        input: $input,
+                    });
+                } finally {
+                    setFakeInputCursorPosition(0);
+                    setInput();
+                }
+
+                break;
+            case "ArrowLeft":
+                if (e.shiftKey) {
+                    e.preventDefault();
+                } else {
+                    if (fakeInputSize > Math.abs(fakeInputCursorPosition)) {
+                        setFakeInputCursorPosition(
+                            (fakeInputCursorPosition -= FAKE_INPUT_CURSOR_SIZE),
+                        );
+                    }
+                }
+
+                break;
+            case "ArrowRight":
+                if (e.shiftKey) {
+                    e.preventDefault();
+                } else {
+                    if (fakeInputCursorPosition < 0) {
+                        setFakeInputCursorPosition(
+                            (fakeInputCursorPosition += FAKE_INPUT_CURSOR_SIZE),
+                        );
+                    }
+                }
+
+                break;
+            case "ArrowDown":
+                if (historyLookup) {
+                    const condition = historyLookupIndex + 1 < $history.length;
+                    if (condition) {
+                        historyLookupIndex++;
+                        let hist = $history[historyLookupIndex];
+                        while (hist.lookup === false) {
+                            if (condition) {
+                                break;
+                            }
+
+                            historyLookupIndex++;
+                            hist = $history[historyLookupIndex];
+                        }
+
+                        if (hist && hist.lookup) {
+                            setInput(hist.input);
+                            break;
+                        }
+                    }
+
+                    resetHistoryLookup(true);
+                }
+
+                setFakeInputCursorPosition(0);
+
+                break;
+            case "ArrowUp":
+                if ($input === "" || historyLookup) {
+                    historyLookup = true;
+                    const condition = historyLookupIndex - 1 >= 0;
+                    if (condition) {
+                        historyLookupIndex--;
+                        let hist = $history[historyLookupIndex];
+                        while (hist.lookup === false) {
+                            if (condition) {
+                                break;
+                            }
+
+                            historyLookupIndex--;
+                            hist = $history[historyLookupIndex];
+                        }
+
+                        if (hist && hist.lookup) {
+                            setInput(hist.input);
+                        }
+                    }
+                } else {
+                    setFakeInputCursorPosition(-fakeInputSize);
+                }
+
+                break;
+            case e.ctrlKey && ("a" || "A"):
+                fakeInput.style.backgroundColor = "var(--light-color)";
+                fakeInput.style.color = "var(--dark-color)";
+                setFakeInputCursorPosition(0);
+
+                break;
+            case e.ctrlKey && ("c" || "C"):
+                setHistory({
+                    output: "",
+                    lookup: false,
+                    path: $wd,
+                    input: `${$input}^C`,
+                });
+                setInput();
+                setFakeInputCursorPosition(0);
+
+                break;
+            default:
+                break;
+        }
+
+        if (historyLookup && e.key !== "ArrowUp" && e.key !== "ArrowDown") {
+            resetHistoryLookup();
+        }
+    }
+
     function focusOnHiddenInput(): void {
         hiddenInput.focus();
     }
 </script>
 
-<svelte:window on:click={focusOnHiddenInput} />
+<svelte:window on:load={focusOnHiddenInput} on:click={focusOnHiddenInput} />
 <section class="terminal">
-    <TerminalHistory {history} />
-    <TerminalInfo {wd}>
-        <span class="fake-ci__input" bind:this={fakeInput}>{command}</span>
+    <TerminalHeader />
+    <TerminalHistory history={$history} />
+    <TerminalInfo wd={$wd}>
+        <span class="fake-ci__input" bind:this={fakeInput}>{$input}</span>
         <span class="fake-ci__cursor" bind:this={fakeInputCursor} />
     </TerminalInfo>
     <input
         type="text"
-        id="hiddenInput"
-        bind:value={command}
         bind:this={hiddenInput}
-        on:keyup={inputControlKeyUp}
-        on:keydown={inputControlKeyDown}
+        bind:value={$input}
+        on:keydown={handleKeyDown}
     />
 </section>
 
@@ -153,14 +251,14 @@
         animation: blink 1.25s linear infinite;
     }
     input {
-        position: absolute;
+        /* position: absolute;
         left: -100%;
         border: none;
         outline: none;
         color: transparent;
         background-color: transparent;
         caret-color: transparent;
-        padding: 0;
+        padding: 0; */
     }
     @keyframes blink {
         50% {
