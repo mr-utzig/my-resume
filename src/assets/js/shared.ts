@@ -1,3 +1,10 @@
+import StarIcon from "../imgs/icons/star.svg";
+import LocationIcon from "../imgs/icons/location.svg";
+import WhatsAppIcon from "../imgs/icons/whatsapp.svg";
+import TelegramIcon from "../imgs/icons/telegram.svg";
+import EmailIcon from "../imgs/icons/email.svg";
+import LinkedInIcon from "../imgs/icons/linkedin.svg";
+
 export const resume = {
     sections: {
         all: function () {
@@ -6,11 +13,11 @@ export const resume = {
         about() {
             return `<h2>Luiz Otavio Utzig Monteiro</h2><div class="resume__section about">
                     <div>
-                        <img src="/src/assets/icons/star.svg" width="15" height="15" color="#F8F8F2" />
+                        <img src="${StarIcon}" width="15" height="15" color="#F8F8F2" />
                         <span>Experienced Full-stack Developer</span>
                     </div>
                     <div>
-                        <img src="/src/assets/icons/location.svg" width="15" height="15" color="#F8F8F2" />
+                        <img src="${LocationIcon}" width="15" height="15" color="#F8F8F2" />
                         <span>Novo Hamburgo, Rio Grande do Sul, Brazil</span>
                     </div>
                     <p>Experienced Full Stack Developer with over 4 years of experience and a diversified skill set covering front end, back end, and mobile development. My expertise includes building web and mobile applications using Svelte, React.js, Vue.js, PHP (Laravel, CodeIgniter), Golang, Flutter and automating processes with Python and ShellScript. A strong foundation in both SQL and NoSQL databases underscores my ability to optimize data performance. As a self-taught developer passionate about technology, I am committed to continuous learning and delivering high-quality work.</p>
@@ -199,7 +206,7 @@ const experiences: IResumeExperience[] = [
 const contacts: IResumeContact[] = [
     {
         label: "WhatsApp",
-        icon: "/src/assets/icons/whatsapp.svg",
+        icon: WhatsAppIcon,
         value: "5551996326706",
         render() {
             return `<a href="https://wa.me/${this.value}" target="_blank">
@@ -210,7 +217,7 @@ const contacts: IResumeContact[] = [
     },
     {
         label: "Telegram",
-        icon: "/src/assets/icons/telegram.svg",
+        icon: TelegramIcon,
         value: "mr_utzig",
         render() {
             return `<a href="https://t.me/${this.value}" target="_blank">
@@ -222,7 +229,7 @@ const contacts: IResumeContact[] = [
     {
         label: "Send an email",
         value: "lutzig.octavius@gmail.com",
-        icon: "/src/assets/icons/email.svg",
+        icon: EmailIcon,
         render() {
             return `<a href="mailto:${this.value}">
                     <img src="${this.icon}" width="25" height="25">
@@ -233,7 +240,7 @@ const contacts: IResumeContact[] = [
     {
         label: "LinkedIn",
         value: "https://www.linkedin.com/in/mr-utzig",
-        icon: "/src/assets/icons/linkedin.svg",
+        icon: LinkedInIcon,
         render() {
             return `<a href="${this.value}" target="_blank">
                     <img src="${this.icon}" width="25" height="25">
