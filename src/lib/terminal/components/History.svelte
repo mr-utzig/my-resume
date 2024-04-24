@@ -8,7 +8,7 @@
     <TerminalInfo wd={command.path}>
         <span class="input">{command.input}</span>
     </TerminalInfo>
-    <span class="response">{@html command.output}</span>
+    <div class="response">{@html command.output}</div>
 {/each}
 
 <style>
@@ -33,11 +33,11 @@
         color: #67daef;
         margin-inline: 0.75rem;
     }
-    :global(.response div.resume__section) {
+    /* :global(.response div.resume__section) {
         display: grid;
         grid-column-gap: 0;
         grid-row-gap: 0;
-    }
+    } */
     :global(.response div.resume__section.about div) {
         display: flex;
         align-items: center;
@@ -49,11 +49,14 @@
         text-indent: 5rem;
     }
     :global(.response div.resume__section.skills) {
-        grid-gap: 1rem;
-        grid-template-columns: repeat(4, 1fr);
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
         margin-block: 1rem;
     }
     :global(.response div.resume__section.skills .knowledge-area__wrapper) {
+        width: 30rem;
         border: 0.1rem solid var(--light-color);
         border-radius: 0.5rem;
     }
@@ -70,14 +73,18 @@
             .response div.resume__section.skills .knowledge-area__skills-list ul
         ) {
         padding-block: 1rem;
+        padding-right: 1rem;
         margin: 0;
     }
     :global(.response div.resume__section.experiences) {
-        grid-gap: 1rem;
-        grid-template-columns: repeat(3, 1fr);
+        display: flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        gap: 1rem;
         margin-block: 1rem;
     }
     :global(.response div.resume__section.experiences .experience__wrapper) {
+        flex: 1 1 30rem;
         border: 0.1rem solid var(--light-color);
         border-radius: 0.5rem;
         padding: 1rem;
@@ -109,10 +116,13 @@
                 ul
         ) {
         padding-block: 1rem;
+        padding-right: 1rem;
         margin: 0;
     }
     :global(.response div.resume__section.contact) {
-        grid-gap: 1rem;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 2.5rem;
         margin-block: 1rem;
     }
     :global(.response div.resume__section.contact .contact__wrapper) {

@@ -239,6 +239,7 @@
 <style>
     .terminal {
         font-size: 1.5rem;
+        padding: 1rem;
     }
     .fake-ci__input {
         white-space: pre;

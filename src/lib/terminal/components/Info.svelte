@@ -12,6 +12,7 @@
 <style>
     .command-input {
         display: flex;
+        flex-wrap: wrap;
         align-items: stretch;
     }
     .ci__username {

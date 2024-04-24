@@ -8,7 +8,8 @@
     <!-- <span class="header__description">A Unix Shell like portfolio!</span> -->
     <div class="header__helper">
         <span>=> Type 'help' to get known to the avaible commands.</span><br />
-        <span>=> Else if you're not a real programmer just type 'goto --ui'.</span
+        <span
+            >=> Else if you're not a real programmer just type 'goto --ui'.</span
         >
     </div>
 </div>
@@ -18,14 +19,14 @@
         margin-bottom: 1rem;
     }
     .header__welcome {
-        font-size: 0.2rem;
+        font-size: 0.125rem;
         margin: unset;
     }
     /* .header__description {
         font-weight: bold;
     } */
     .header__helper {
-        font-size: 1.15rem;
+        font-size: 1.25rem;
         margin-top: 1.5rem;
     }
 </style>

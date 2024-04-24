@@ -14,3 +14,9 @@
         </Route>
     </main>
 </Router>
+
+<style>
+    main {
+        height: 100dvh;
+    }
+</style>
