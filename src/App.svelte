@@ -5,18 +5,10 @@
 </script>
 
 <Router primary={false}>
-    <main>
-        <Route path="/">
-            <UserInterface />
-        </Route>
-        <Route>
-            <Terminal />
-        </Route>
-    </main>
+    <Route path="/">
+        <UserInterface />
+    </Route>
+    <Route>
+        <Terminal />
+    </Route>
 </Router>
-
-<style>
-    main {
-        height: 100dvh;
-    }
-</style>

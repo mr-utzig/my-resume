@@ -19,14 +19,14 @@
         margin-bottom: 1rem;
     }
     .header__welcome {
-        font-size: 0.125rem;
+        font-size: 0.13rem;
         margin: unset;
     }
     /* .header__description {
         font-weight: bold;
     } */
     .header__helper {
-        font-size: 1.25rem;
+        font-size: 1.4rem;
         margin-top: 1.5rem;
     }
 </style>
