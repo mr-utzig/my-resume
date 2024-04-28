@@ -17,15 +17,22 @@
 
 	cursor: text;
 
+	--main-color: #ff3e00;
+	--second-color: #e66f47;
+	--third-color: #2e2e2e;
+	--surface-color: #444444;
+	--gray-color: #c4c4c4;
+	--light-gray-color: #e6e6e6;
 	--light-color: #F8F8F2;
 	--dark-color: #272822;
+	--darker-color: #1a1a1a;
 
 	--terminal-green-color: #a6e22e;
 	--terminal-blue-color: #66d9ef;
 	--terminal-fake-cursor-width: 0.923rem;
 
 	color: var(--light-color);
-	background-color: var(--dark-color);
+	background-color: var(--third-color);
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
@@ -46,8 +53,11 @@
 	background: var(--light-color);
 }
 
+* {
+	box-sizing: border-box;
+}
+
 body {
 	margin: 0;
 	min-width: 320px;
-	box-sizing: border-box;
 }

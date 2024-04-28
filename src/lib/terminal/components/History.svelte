@@ -33,11 +33,9 @@
         color: #67daef;
         margin-inline: 0.75rem;
     }
-    /* :global(.response div.resume__section) {
-        display: grid;
-        grid-column-gap: 0;
-        grid-row-gap: 0;
-    } */
+    :global(.response div.resume__section.about :where(span, p)) {
+        font-size: 1.6rem;
+    }
     :global(.response div.resume__section.about div) {
         display: flex;
         align-items: center;
@@ -93,18 +91,8 @@
         margin: 0;
     }
     :global(
-            .response
-                div.resume__section.experiences
-                .experience__wrapper
-                .experience__info
-                :not(h4)
-        ) {
-        font-size: 1.4rem;
-    }
-    :global(
             .response div.resume__section.experiences .experience__description
         ) {
-        font-size: 1.3rem;
         max-height: 30rem;
         overflow: auto;
         margin-top: 1rem;
@@ -127,6 +115,7 @@
     }
     :global(.response div.resume__section.contact .contact__wrapper) {
         width: fit-content;
+        font-size: 1.8rem;
     }
     :global(.response div.resume__section.contact h2) {
         margin: 0;
@@ -143,7 +132,7 @@
         margin-left: 10rem;
     }
     :global(.response h2) {
-        font-size: 1.75rem;
+        font-size: 2rem;
     }
     :global(.response a) {
         display: flex;

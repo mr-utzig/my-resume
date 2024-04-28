@@ -221,7 +221,7 @@
 </script>
 
 <svelte:window on:load={focusOnHiddenInput} on:click={focusOnHiddenInput} />
-<section class="terminal">
+<main class="terminal">
     <TerminalHeader />
     <TerminalHistory history={$history} />
     <TerminalInfo wd={$wd}>
@@ -234,7 +234,7 @@
         bind:value={$input}
         on:keydown={handleKeyDown}
     />
-</section>
+</main>
 
 <style>
     .terminal {

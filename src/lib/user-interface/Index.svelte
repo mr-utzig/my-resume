@@ -1,39 +1,34 @@
 <script lang="ts">
-    import LutzigLogo from "../../assets/imgs/logo/lutzig.svg";
+    import Header from "./components/Header.svelte";
+    import About from "./components/About.svelte";
+    import Footer from "./components/Footer.svelte";
+    import Contact from "./components/Contact.svelte";
+    import Skills from "./components/Skills.svelte";
+    import Experiences from "./components/Experiences.svelte";
 </script>
 
-<section>
-    <div>
-        <a href="/bin/bash" rel="alternate">
-            <img src={LutzigLogo} class="logo" alt="Lutzig Logo" />
-        </a>
-    </div>
-    <h1>
-        🚧 Work in Progress: Crafting something amazing. Stay tuned for updates!
-        🚧
-    </h1>
-</section>
+<Header />
+<main>
+    <About />
+    <Skills />
+    <Experiences />
+    <Contact />
+    <Footer />
+</main>
 
 <style>
-    section {
-        height: 100%;
+    main {
+        height: calc(100dvh - 8.5rem);
+        background-color: var(--third-color);
+        overflow: auto;
+    }
+    :global(section) {
+        min-height: calc(100dvh - 8.5rem);
         display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
         padding: 1rem;
     }
-    .logo {
-        height: 15rem;
-        padding: 1.5em;
-        will-change: filter;
-        transition: filter 300ms;
-    }
-    .logo:hover {
-        filter: drop-shadow(0 0 2em #219dd0);
-    }
-    h1 {
-        font-size: 2.5rem;
-        text-align: center;
+    :global(button svg, a svg) {
+        width: 2rem;
+        height: 2rem;
     }
 </style>
