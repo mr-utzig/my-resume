@@ -2,16 +2,18 @@
 	font-family: "FiraCode";
 	src: url('../fonts/FiraCodeRegular.ttf');
 	font-weight: normal;
+	font-display: swap;
 }
 
 @font-face {
 	font-family: "FiraCode";
 	src: url('../fonts/FiraCodeBold.ttf');
 	font-weight: bold;
+	font-display: swap;
 }
 
 :root {
-	font-family: "FiraCode";
+	font-family: "FiraCode", monospace;
 	line-height: 1.5;
 	font-size: 10px;
 
