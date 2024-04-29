@@ -45,6 +45,7 @@
     }
     h3 {
         font-size: 1.6rem;
+        color: var(--second-color);
         margin: 0;
         margin-bottom: 0.5rem;
     }

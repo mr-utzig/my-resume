@@ -81,7 +81,7 @@
         margin: 0;
     }
     h1 > span {
-        color: var(--main-color);
+        color: var(--second-color);
     }
     header > div {
         display: flex;
@@ -125,31 +125,24 @@
         width: 15rem;
         font-size: 1.4rem;
         font-weight: bold;
-        color: var(--second-color);
         border-radius: 0.6rem;
-        border: 1px solid var(--second-color);
-        background-color: transparent;
+        color: var(--light-color);
+        background-color: var(--second-color);
+        border: 0;
         padding: 0.8rem 1.2rem;
         cursor: pointer;
-        transition: all 250ms ease-in-out;
     }
     button:hover {
-        color: var(--light-gray-color);
-        background-color: var(--second-color);
+        opacity: 0.8;
+    }
+    .download-cv {
+        transition: all 250ms ease-in-out;
     }
     .open-shell {
         position: relative;
-        font-size: 1.4rem;
-        border: 0;
-        border-radius: 0.4rem;
-        color: var(--light-color);
-        background-color: var(--second-color);
-        cursor: pointer;
-        padding: 0.8rem 1.2rem;
     }
-
     .open-shell:after {
-        background-color: var(--main-color);
+        background-color: var(--second-color);
         content: "";
         display: block;
         width: 100%;
@@ -164,7 +157,6 @@
         animation-direction: alternate-reverse;
         animation-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
     }
-
     @keyframes blink {
         0% {
             transform: scale3d(1, 1, 1);

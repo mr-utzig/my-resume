@@ -1,6 +1,19 @@
-<script>
+<script lang="ts">
     import { contacts, email } from "../../../assets/js/shared";
     import Send from "../../icons/Send.svelte";
+
+    let name: string = "";
+    let sender: string = "";
+    let message: string = "";
+
+    function openEmailSender(e: MouseEvent) {
+        e.preventDefault();
+
+        window.open(
+            `mailto:${email}?body=${message}&subject=${name} wants to contact you`,
+            "_blank",
+        );
+    }
 </script>
 
 <section id="contact" class="resume__section contact">
@@ -20,7 +33,7 @@
                     >
                         <img
                             src={ctt.icon}
-                            alt={ctt.label}
+                            alt={`${ctt.label} icon for contact button`}
                             width="25"
                             height="25"
                         />
@@ -30,26 +43,31 @@
             {/each}
         </div>
         <div class="content__contact-form">
-            <form
-                action="mailto:{email}"
-                method="post"
-                enctype="text/plain"
-                class="form"
-            >
+            <form class="form">
                 <div>
                     <label for="name">Name</label>
-                    <input type="text" name="name" />
+                    <input type="text" id="name" name="name" bind:value={name} />
                 </div>
                 <div>
                     <label for="email">Email</label>
-                    <input type="email" name="email" required />
+                    <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        required
+                        bind:value={sender}
+                    />
                 </div>
                 <div>
                     <label for="message">Message</label>
-                    <textarea id="message" autocomplete="false" required
+                    <textarea
+                        id="message"
+                        autocomplete="false"
+                        required
+                        bind:value={message}
                     ></textarea>
                 </div>
-                <button type="submit">
+                <button on:click={openEmailSender}>
                     Send
                     <svelte:component this={Send} />
                 </button>
@@ -94,10 +112,10 @@
         font-size: 1.4rem;
         font-weight: bold;
         text-decoration: none;
-        color: var(--light-color);
-        border: 1px solid var(--light-color);
-        border-radius: 0.4rem;
-        padding: 0.4rem;
+        color: var(--light-gray-color);
+        border: 1px solid var(--light-gray-color);
+        border-radius: 0.6rem;
+        padding: 0.4rem 0.6rem;
         transition: all 250ms ease-in-out;
     }
     .link:hover {
@@ -143,7 +161,7 @@
         color: var(--light-color);
         background-color: var(--second-color);
         border: none;
-        border-radius: 0.4rem;
+        border-radius: 0.6rem;
         padding: 0.8rem 1.2rem;
     }
     .form button:hover {

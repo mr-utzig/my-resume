@@ -45,7 +45,7 @@
         font-size: 4rem;
         font-weight: bold;
         text-align: center;
-        text-shadow: 0px 1px 4px var(--darker-color);
+        text-shadow: 0px 2px 2px var(--darker-color);
         color: var(--second-color);
     }
     .section__content {
