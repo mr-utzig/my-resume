@@ -1,4 +1,4 @@
-export function download(uri: string) {
+export function download(uri: string): void {
     const link = document.createElement("a");
 
     link.href = uri;
@@ -7,4 +7,8 @@ export function download(uri: string) {
     document.body.appendChild(link);
     link.click();
     link.remove();
+}
+
+export function getYearsOfExperience(): number {
+    return new Date().getFullYear() - 2020;
 }

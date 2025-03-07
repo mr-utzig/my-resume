@@ -1,4 +1,6 @@
 <script lang="ts">
+    import { getYearsOfExperience } from "../../../assets/js/utils";
+
     let showMore = false;
 
     function toggleShowMore(e: Event) {
@@ -16,7 +18,7 @@
             >Novo Hamburgo, Rio Grande do Sul, Brazil</span
         >
         <p class="content_lore">
-            Experienced Full Stack Developer with over 4 years of experience and
+            Experienced Full Stack Developer with over {getYearsOfExperience()} years of experience and
             a diversified skill set covering front-end, back-end, and mobile
             development.
             {#if showMore}

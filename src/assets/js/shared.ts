@@ -1,3 +1,5 @@
+import { getYearsOfExperience } from "./utils";
+
 import WhatsAppIcon from "../imgs/icons/whatsapp.svg";
 import TelegramIcon from "../imgs/icons/telegram.svg";
 import EmailIcon from "../imgs/icons/email.svg";
@@ -19,7 +21,7 @@ export const resume = {
                     <div>
                         <span>⦿ Novo Hamburgo, Rio Grande do Sul, Brazil</span>
                     </div>
-                    <p>Experienced Full Stack Developer with over 4 years of experience and a diversified skill set covering front-end, back-end, and mobile development. My expertise includes building web and mobile applications using Svelte, React.js, Vue.js, PHP (Laravel, CodeIgniter), Golang, Flutter and automating processes with Python and ShellScript. A strong foundation in both SQL and NoSQL databases underscores my ability to optimize data performance. As a self-taught developer passionate about technology, I am committed to continuous learning and delivering high-quality work.</p>
+                    <p>Experienced Full Stack Developer with over ${getYearsOfExperience()} years of experience and a diversified skill set covering front-end, back-end, and mobile development. My expertise includes building web and mobile applications using Svelte, React.js, Vue.js, PHP (Laravel, CodeIgniter), Golang, Flutter and automating processes with Python and ShellScript. A strong foundation in both SQL and NoSQL databases underscores my ability to optimize data performance. As a self-taught developer passionate about technology, I am committed to continuous learning and delivering high-quality work.</p>
                 </div>`;
         },
         skills() {
