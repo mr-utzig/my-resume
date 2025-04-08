@@ -27,6 +27,8 @@
 <style>
     .resume__section {
         flex-direction: column;
+        max-width: 950px;
+        margin-inline: auto;
     }
     h2 {
         font-size: 3rem;
@@ -37,9 +39,10 @@
     }
     .section__content {
         display: flex;
-        justify-content: space-evenly;
+        justify-content: center;
         flex-wrap: wrap;
         gap: 1rem;
+        margin-top: 2.5rem;
     }
     .card {
         min-width: 28.5rem;
@@ -47,6 +50,7 @@
         border-radius: 0.8rem;
         padding: 1rem 1.5rem;
         box-shadow: 0px 2px 3px var(--darker-color);
+        flex: 1;
     }
     h3 {
         font-size: 1.6rem;

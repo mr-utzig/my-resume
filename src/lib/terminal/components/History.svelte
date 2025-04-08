@@ -57,6 +57,7 @@
         width: 30rem;
         border: 0.1rem solid var(--light-color);
         border-radius: 0.5rem;
+        flex: 1;
     }
     :global(.response div.resume__section.skills .knowledge-area__wrapper h4) {
         border-bottom: 0.1rem solid var(--light-color);

@@ -160,7 +160,7 @@ export const commands: ICommands = {
         exec(args) {
             let output = "";
             if (args.options.length !== 1) {
-                throw "Invalid number of arguments";
+                args.options.push("--all");
             }
 
             const section = args.options[0];

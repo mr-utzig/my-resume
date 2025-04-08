@@ -22,6 +22,8 @@
 <style>
     .resume__section {
         flex-direction: column;
+        width: fit-content;
+        margin-inline: auto;
     }
     h2 {
         font-size: 3rem;
@@ -35,6 +37,7 @@
         justify-content: space-evenly;
         flex-wrap: wrap;
         gap: 1rem;
+        margin-top: 2.5rem;
     }
     .card {
         max-width: 42rem;

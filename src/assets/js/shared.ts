@@ -1,4 +1,4 @@
-import { getYearsOfExperience } from "./utils";
+import { calculateDates, getYearsOfExperience } from "./utils";
 
 import WhatsAppIcon from "../imgs/icons/whatsapp.svg";
 import TelegramIcon from "../imgs/icons/telegram.svg";
@@ -16,12 +16,18 @@ export const resume = {
         about() {
             return `<h2>Luiz Otavio Utzig Monteiro</h2><div class="resume__section about">
                     <div>
-                        <span>✸ Experienced Full-stack Developer</span>
+                        <span>✸ Experienced Full Stack Developer</span>
                     </div>
                     <div>
                         <span>⦿ Novo Hamburgo, Rio Grande do Sul, Brazil</span>
                     </div>
-                    <p>Experienced Full Stack Developer with over ${getYearsOfExperience()} years of experience and a diversified skill set covering front-end, back-end, and mobile development. My expertise includes building web and mobile applications using Svelte, React.js, Vue.js, PHP (Laravel, CodeIgniter), Golang, Flutter and automating processes with Python and ShellScript. A strong foundation in both SQL and NoSQL databases underscores my ability to optimize data performance. As a self-taught developer passionate about technology, I am committed to continuous learning and delivering high-quality work.</p>
+                    <p>
+                        Experienced Full Stack Developer with over ${getYearsOfExperience()} years of experience and a diversified skill set covering front-end, back-end, and mobile development.
+                        Skilled in leveraging advanced algorithms and data structures to optimise performance and scalability.
+                        A proactive contributor to architectural discussions, implementing best practices and emerging technologies to enhance the development process.
+                        Committed to delivering high quality applications that meet client expectations and drive operational efficiency.
+                        As a self-taught developer passionate about technology, I am committed to continuous learning and delivering high quality work.
+                    </p>
                 </div>`;
         },
         skills() {
@@ -83,11 +89,11 @@ function generateASCIIProgressBar(percentage: number): string {
 
 export const areasSkills: IResumeAreasSkills = {
     "Hard skills": {
-        "Full-stack Development": 8,
-        "Version Control": 7,
-        "Algorithms": 6,
-        "Data Structures": 6,
-        "Software Architecture": 4,
+        "Full-stack Development": 9,
+        "Version Control": 8,
+        "Algorithms": 7,
+        "Data Structures": 7,
+        "Software Architecture": 6,
     },
     "Soft skills": {
         "Creativity": 9,
@@ -95,54 +101,52 @@ export const areasSkills: IResumeAreasSkills = {
         "Critical Thinking": 8,
         "Adaptability": 7,
         "Resilience": 6,
-        "Collaboration": 5,
+        "Collaboration": 6,
     },
     "Front-end": {
         "HTML5": 8,
-        "HTMX": 5,
-        "Templ": 4,
+        "HTMX": 6,
+        "Templ": 6,
         "CSS": 8,
-        "Tailwind": 5,
-        "SCSS": 4,
-        "JavaScript": 8,
-        "TypeScript": 5,
-        "jQuery": 7,
-        "Svelte.js": 6,
-        "Vue.js": 5,
-        "React.js": 4,
+        "Tailwind": 7,
+        "SCSS": 6,
+        "JavaScript": 9,
+        "TypeScript": 7,
+        "jQuery": 9,
+        "React.js": 8,
+        "Svelte.js": 7,
+        "Vue.js": 7,
+        "Flutter": 6,
     },
     "Back-end": {
-        "PHP": 8,
-        "Laravel": 5,
-        "CodeIgniter": 5,
-        "Node.js": 7,
-        "GoLang": 6,
-        "Python": 6,
-        "Kafka": 3,
-        "RabbitMQ": 3,
-    },
-    "Mobile": {
-        "Flutter": 4,
+        "PHP": 9,
+        "Laravel": 9,
+        "CodeIgniter": 8,
+        "Node.js": 8,
+        "GoLang": 8,
+        "Python": 7,
+        "Kafka": 5,
+        "RabbitMQ": 5,
     },
     "DevOps": {
-        "Linux": 7,
-        "Shell Script": 4,
-        "Azure": 3,
-        "Amazon Web Services (AWS)": 3,
-        "Google Cloud Provider (GCP)": 3,
-        "Docker": 5,
-        "Docker Swarm": 4,
-        "Kubernetes": 4,
+        "Linux": 9,
+        "Shell Script": 7,
+        "Amazon Web Services (AWS)": 7,
+        "Google Cloud Provider (GCP)": 6,
+        "Azure": 5,
+        "Docker": 8,
+        "Docker Swarm": 6,
+        "Kubernetes": 5,
     },
-    "SQL": {
+    "Database": {
+        "SQL": 9,
         "MySQL": 8,
+        "PostgreSQL": 7,
         "SQLite": 6,
-        "PostgreSQL": 5,
-        "Turso": 3,
-    },
-    "NoSQL": {
-        "MongoDB": 5,
-        "Cassandra": 3,
+        "Turso": 6,
+        "NoSQL": 7,
+        "MongoDB": 7,
+        "Cassandra": 6,
     }
 };
 
@@ -150,15 +154,15 @@ export const experiences: IResumeExperience[] = [
     {
         role: "Full-stack Developer Intermediate",
         company: "Delta Global",
-        duration: "Sep 2023 - Present",
+        duration: `Sep 2023 - Present · ${calculateDates(new Date(2023, 8, 1), new Date())}`,
         location: "Porto Alegre, Rio Grande do Sul, Brazil",
-        description: `<b>Description:</b>
+        description: `<b>Key Achievements:</b>
             <ul>
-                <li>Engaged in software development, handling both front-end and back-end system design, coding, testing, and deployment.</li>
-                <li>Implemented efficient algorithms and data structures to enhance software performance.</li>
-                <li>Played a crucial role in architectural discussions, proposing innovative solutions to boost system efficiency.</li>
-                <li>Ensured the development of reliable software by collaborating closely with cross-functional teams.</li>
-                <li>Kept abreast of industry trends to incorporate best practices and new technologies, improving development processes.</li>
+                <li>Developed software solutions, handling front-end and back-end design, coding, testing, and deployment.</li>
+                <li>Proposed innovative solutions in architectural discussions to enhance system efficiency.</li>
+                <li>Collaborated with cross-functional teams to ensure reliable software development.</li>
+                <li>Refactored legacy code to improve reliability, scalability and maintainability.</li>
+                <li>Optimized queries and applied DSA knowledge to improve application performance and reduce response times by 70%</li>
             </ul>`
     },
     {
@@ -166,19 +170,7 @@ export const experiences: IResumeExperience[] = [
         company: "Messem Investimentos",
         duration: "Jan 2023 - Aug 2023 · 8 mos",
         location: "Porto Alegre, Rio Grande do Sul, Brazil",
-        description: `<b>Description:</b>
-            <ul>
-                <li>Collaborated with a team of software developers to design, develop, and maintain innovative software solutions.</li>
-                <li>Participated in all phases of the software development life cycle, including requirements gathering, system design, coding, testing, and deployment.</li>
-                <li>Implemented efficient algorithms and data structures to optimize software performance and scalability.</li>
-                <li>Conducted code reviews, provided constructive feedback, and collaborated with team members to ensure high-quality code.</li>
-                <li>Actively contributed to architectural discussions and proposed solutions to improve overall system design and efficiency.</li>
-                <li>Collaborated with cross-functional teams, to deliver reliable and user-friendly software solutions.</li>
-                <li>Researched and implemented industry best practices and emerging technologies to enhance software development processes.</li>
-                <li>Assisted in troubleshooting and resolving software defects, addressing customer issues promptly and effectively.</li>
-                <li>Documented software features, functionalities, and technical specifications to facilitate knowledge transfer and future maintenance.</li>
-            </ul>
-            <b>Key Achievements:</b>
+        description: `<b>Key Achievements:</b>
             <ul>
                 <li>Successfully delivered features within agreed-upon timelines, meeting or exceeding client expectations.</li>
                 <li>Implemented performance enhancements that resulted in improved system response time and increased overall customer satisfaction.</li>
@@ -189,17 +181,11 @@ export const experiences: IResumeExperience[] = [
         company: "Brudam - Software TMS para sua transportadora",
         duration: "Jun 2020 - Dec 2022 · 2 yrs 7 mos",
         location: "Eldorado do Sul, Rio Grande do Sul, Brazil",
-        description: `<b>Description:</b>
+        description: `<b>Key Achievements:</b>
             <ul>
-                <li>Developed and maintained Brudam's flagship product, a Transportation Management System (TMS), ensuring its efficiency, reliability, and scalability.</li>
-                <li>Utilized Flutter framework to create innovative and user-friendly mobile applications for third-party clients, meeting their specific requirements and exceeding expectations.</li>
-            </ul>
-            <b>Key Achievements:</b>
-            <ul>
-                <li>Successfully delivered complex projects on time and within budget, earning positive feedback from clients.</li>
-                <li>Developed a robust TMS system that resulted in increased operational efficiency and cost savings for the company.</li>
-                <li>Received recognition for exceptional problem-solving abilities, effectively identifying and resolving technical challenges.</li>
-                <li>Actively stayed up-to-date with the latest industry trends and technologies, continuously improving skills and knowledge.</li>
+                <li>Implemented efficient algorithms and data structures to optimize software performance and scalability.</li>
+                <li>Successfully delivered features within agreed-upon timelines, meeting or exceeding client expectations.</li>
+                <li>Implemented performance enhancements that resulted in improved system response time and increased overall customer satisfaction.</li>
             </ul>`
     }
 ];
@@ -228,17 +214,6 @@ export const contacts: IResumeContact[] = [
         }
     },
     {
-        label: "Send an email",
-        value: `mailto:${email}`,
-        icon: EmailIcon,
-        render() {
-            return `<a href="${this.value}">
-                    <img src="${this.icon}" width="25" height="25">
-                    <span>${this.label}</span>
-                </a>`
-        }
-    },
-    {
         label: "LinkedIn",
         value: "https://linkedin.com/in/mr-utzig",
         icon: LinkedInIcon,
@@ -258,6 +233,17 @@ export const contacts: IResumeContact[] = [
                     <img src="${this.icon}" width="25" height="25">
                     <span>${this.label}</span>
                 </a>`;
+        }
+    },
+    {
+        label: "Send an email",
+        value: `mailto:${email}`,
+        icon: EmailIcon,
+        render() {
+            return `<a href="${this.value}">
+                    <img src="${this.icon}" width="25" height="25">
+                    <span>${this.label}</span>
+                </a>`
         }
     }
 ]

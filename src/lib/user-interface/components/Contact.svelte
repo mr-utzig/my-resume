@@ -78,8 +78,10 @@
 
 <style>
     .resume__section {
+        width: fit-content;
         flex-direction: column;
         gap: 2rem;
+        margin-inline: auto;
     }
     .section__title h2 {
         font-size: 3rem;
@@ -94,10 +96,12 @@
     }
     .section__content {
         display: flex;
+        flex-direction: column;
         align-items: flex-start;
         justify-content: space-around;
         flex-wrap: wrap;
-        gap: 2rem;
+        gap: 2.5rem;
+        margin-top: 2rem;
     }
     .content__contact-links {
         display: flex;
@@ -123,13 +127,13 @@
     }
     .content__contact-form {
         flex: 1;
+        width: 100%;
         max-width: 60rem;
     }
     .form {
         display: flex;
         flex-direction: column;
         gap: 1.5rem;
-        padding: 1rem 2rem;
     }
     .form > div {
         display: flex;

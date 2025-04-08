@@ -77,12 +77,12 @@
                             i.match(/(?!-)^\S+$/gi),
                         );
 
-                        if (
-                            Object.keys(internals.options).length &&
-                            !options.length
-                        ) {
-                            throw `${command}: invalid option`;
-                        }
+                        // if (
+                        //     Object.keys(internals.options).length &&
+                        //     !options.length
+                        // ) {
+                        //     throw `${command}: invalid option`;
+                        // }
 
                         const output = internals.exec({ options, parameters });
                         if (typeof output !== "undefined") {
