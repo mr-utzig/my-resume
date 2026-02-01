@@ -3,9 +3,12 @@
 </script>
 
 <div class="command-input">
-    <span class="ci__username">resume</span>@
-    <span class="ci__domain">mr-utzig</span>:
-    <span class="ci__pwd">{wd}</span>$&nbsp;
+    <span class="ci__user">
+        <span class="ci__username">lutzig</span>@<span class="ci__domain">mr-utzig</span>
+    </span>
+    <span class="ci__separator">:</span>
+    <span class="ci__pwd">{wd}</span>
+    <span class="ci__prompt">$</span>
     <slot />
 </div>
 
@@ -14,18 +17,33 @@
         display: flex;
         flex-wrap: wrap;
         align-items: stretch;
+        gap: 0.3rem;
     }
+    
+    .ci__user {
+        font-weight: bold;
+    }
+    
     .ci__username {
-        font-weight: bold;
-        color: var(--terminal-green-color);
+        color: var(--tn-green);
     }
+    
     .ci__domain {
-        font-weight: bold;
-        color: var(--terminal-green-color);
+        color: var(--tn-green);
     }
+    
+    .ci__separator {
+        color: var(--tn-white);
+    }
+    
     .ci__pwd {
         font-weight: bold;
-        color: var(--terminal-blue-color);
-        margin: 0 0.5rem;
+        color: var(--tn-blue);
+    }
+    
+    .ci__prompt {
+        color: var(--matrix-green);
+        margin-left: 0.3rem;
+        margin-right: 0.5rem;
     }
 </style>

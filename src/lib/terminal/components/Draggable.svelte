@@ -16,7 +16,7 @@
         }
     }
 
-    function dragMouseDown(e: DragEvent) {
+    function dragMouseDown(e: MouseEvent) {
         e.preventDefault();
         // get the mouse cursor position at startup:
         pos3 = e.clientX;
@@ -26,7 +26,7 @@
         document.onmousemove = elementDrag;
     }
 
-    function elementDrag(e: DragEvent) {
+    function elementDrag(e: MouseEvent) {
         e.preventDefault();
         // calculate the new cursor position:
         pos1 = pos3 - e.clientX;
