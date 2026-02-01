@@ -6,7 +6,7 @@
     import TerminalHeader from "./components/Header.svelte";
     import MatrixRain from "./components/MatrixRain.svelte";
     import { commands, getCommandNames } from "./core/Commands";
-    import { input, history, wd, showMatrix, isHacking } from "./store";
+    import { input, history, wd, showMatrix, isRunning } from "./store";
 
     // Elements
     let hiddenInput: HTMLInputElement;
@@ -246,7 +246,7 @@
             case "Escape":
                 showSuggestions = false;
                 $showMatrix = false;
-                $isHacking = false;
+                $isRunning = false;
                 break;
             default:
                 // Handle Ctrl+A
@@ -289,7 +289,7 @@
     <MatrixRain fullscreen={true} />
 {/if}
 
-<main class="terminal" class:hacking={$isHacking}>
+<main class="terminal" class:running={$isRunning}>
     <div class="terminal-window">
         <div class="terminal-titlebar">
             <div class="titlebar-buttons">
@@ -304,10 +304,16 @@
             <div class="terminal-content">
                 <TerminalHeader />
                 <TerminalHistory history={$history} />
-                <TerminalInfo wd={$wd}>
-                    <span class="fake-ci__input" bind:this={fakeInput}>{$input}</span>
-                    <span class="fake-ci__cursor" bind:this={fakeInputCursor} />
-                </TerminalInfo>
+                {#if !$isRunning}
+                    <TerminalInfo wd={$wd}>
+                        <span class="fake-ci__input" bind:this={fakeInput}>{$input}</span>
+                        <span class="fake-ci__cursor" bind:this={fakeInputCursor} />
+                    </TerminalInfo>
+                {:else}
+                    <div class="running-indicator">
+                        <span class="running-dots"></span>
+                    </div>
+                {/if}
                 
                 {#if showSuggestions && suggestions.length > 0}
                     <div class="suggestions">
@@ -349,7 +355,7 @@
         justify-content: center;
     }
     
-    .terminal.hacking {
+    .terminal.running {
         animation: hackerGlow 0.1s infinite;
     }
     
@@ -495,6 +501,31 @@
         50% { opacity: 0; }
     }
     
+    /* Running indicator */
+    .running-indicator {
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 0;
+        color: var(--tn-comment);
+    }
+    
+    .running-dots::after {
+        content: '...';
+        animation: runningDots 1.5s infinite;
+        display: inline-block;
+        width: 2rem;
+        text-align: left;
+        color: var(--matrix-green);
+    }
+    
+    @keyframes runningDots {
+        0% { content: '.'; }
+        33% { content: '..'; }
+        66% { content: '...'; }
+        100% { content: '.'; }
+    }
+
     @media only screen and (max-width: 768px) {
         .terminal {
             padding: 1rem;

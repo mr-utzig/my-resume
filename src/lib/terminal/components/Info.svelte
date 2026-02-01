@@ -4,7 +4,7 @@
 
 <div class="command-input">
     <span class="ci__user">
-        <span class="ci__username">lutzig</span>@<span class="ci__domain">mr-utzig</span>
+        <span class="ci__username">user</span>@<span class="ci__domain">mr-utzig</span>
     </span>
     <span class="ci__separator">:</span>
     <span class="ci__pwd">{wd}</span>

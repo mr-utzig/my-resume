@@ -106,45 +106,35 @@
         display: flex;
         gap: 2rem;
         margin: 1rem 0;
+        align-items: flex-start;
     }
-    :global(.response .neofetch-ascii) {
+    :global(.response .neofetch-logo) {
         color: var(--tn-blue);
-        white-space: pre;
         font-family: monospace;
         line-height: 1.2;
+        margin: 0;
+        font-size: 0.85em;
     }
     :global(.response .neofetch-info) {
-        display: flex;
-        flex-direction: column;
-        gap: 0.3rem;
+        font-family: monospace;
+        line-height: 1.5;
+        margin: 0;
     }
-    :global(.response .neofetch-title) {
+    :global(.response .neofetch-label) {
         color: var(--tn-cyan);
         font-weight: bold;
     }
-    :global(.response .neofetch-separator) {
-        color: var(--tn-comment);
-    }
-    :global(.response .neofetch-row) {
-        display: flex;
-    }
-    :global(.response .neofetch-label) {
+    :global(.response .neofetch-key) {
         color: var(--tn-purple);
         font-weight: bold;
-        min-width: 10rem;
-    }
-    :global(.response .neofetch-value) {
-        color: var(--tn-white);
     }
     :global(.response .neofetch-colors) {
-        display: flex;
-        gap: 0.3rem;
-        margin-top: 0.5rem;
-    }
-    :global(.response .neofetch-color) {
-        width: 2rem;
-        height: 1rem;
-        border-radius: 0.2rem;
+        background: linear-gradient(to right, 
+            var(--tn-red), var(--tn-orange), var(--tn-yellow), 
+            var(--tn-green), var(--tn-cyan), var(--tn-blue), var(--tn-purple));
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        background-clip: text;
     }
 
     /* Tree output */
@@ -273,17 +263,42 @@
         text-align: right;
     }
 
-    /* Hack animation */
+    /* Hack output */
     :global(.response .hack-output) {
         color: var(--matrix-green);
         font-family: monospace;
+        margin: 0.5rem 0;
     }
     :global(.response .hack-line) {
-        animation: hackFade 0.1s ease-out;
+        opacity: 0;
+        animation: hackTyping 0.3s ease-out forwards;
+        line-height: 1.6;
     }
-    @keyframes hackFade {
-        from { opacity: 0; transform: translateX(-10px); }
-        to { opacity: 1; transform: translateX(0); }
+    @keyframes hackTyping {
+        0% {
+            opacity: 0;
+            transform: translateX(-10px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+    :global(.response .hack-ok) {
+        color: var(--tn-green);
+        font-weight: bold;
+    }
+    :global(.response .hack-password) {
+        color: var(--tn-yellow);
+    }
+    :global(.response .hack-complete) {
+        color: var(--tn-red);
+        font-weight: bold;
+        font-size: 1.2em;
+    }
+    :global(.response .hack-joke) {
+        color: var(--tn-comment);
+        font-style: italic;
     }
 
     /* Cat output */

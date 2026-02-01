@@ -36,10 +36,10 @@
         function draw() {
             if (!ctx) return;
             
-            ctx.fillStyle = fullscreen ? "rgba(26, 27, 38, 0.1)" : "rgba(26, 27, 38, 0.05)";
+            // Clear with semi-transparent background for fade effect
+            ctx.fillStyle = fullscreen ? "rgba(26, 27, 38, 0.15)" : "rgba(26, 27, 38, 0.25)";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
             
-            ctx.fillStyle = fullscreen ? "#00ff41" : "#00ff4115";
             ctx.font = `${fontSize}px monospace`;
             
             for (let i = 0; i < drops.length; i++) {
@@ -48,12 +48,11 @@
                 const y = drops[i] * fontSize;
                 
                 if (fullscreen) {
-                    // Gradient effect for fullscreen
-                    const gradient = ctx.createLinearGradient(x, y - fontSize * 10, x, y);
-                    gradient.addColorStop(0, "transparent");
-                    gradient.addColorStop(0.8, "#00ff4180");
-                    gradient.addColorStop(1, "#00ff41");
-                    ctx.fillStyle = gradient;
+                    // Bright green for fullscreen matrix
+                    ctx.fillStyle = "#00ff41";
+                } else {
+                    // Subtle green for background
+                    ctx.fillStyle = "#00ff4130";
                 }
                 
                 ctx.fillText(text, x, y);

@@ -1,5 +1,5 @@
 import { navigate } from "svelte-navigator";
-import { history, showMatrix, isHacking } from "../store"
+import { history, showMatrix, isRunning } from "../store"
 import { Workspace } from "./Workspace";
 import { download, getYearsOfExperience } from "../../../assets/js/utils";
 import { resume, areasSkills, experiences, contacts, email } from "../../../assets/js/shared";
@@ -72,20 +72,17 @@ function cowsay(message: string): string {
 
 // Neofetch-style system info
 function getNeofetch(): string {
-    const ascii = `<span class="neofetch-logo">
-   ██╗     ██╗   ██╗████████╗███████╗██╗ ██████╗ 
+    const ascii = `   ██╗     ██╗   ██╗████████╗███████╗██╗ ██████╗ 
    ██║     ██║   ██║╚══██╔══╝╚══███╔╝██║██╔════╝ 
    ██║     ██║   ██║   ██║     ███╔╝ ██║██║  ███╗
    ██║     ██║   ██║   ██║    ███╔╝  ██║██║   ██║
    ███████╗╚██████╔╝   ██║   ███████╗██║╚██████╔╝
-   ╚══════╝ ╚═════╝    ╚═╝   ╚══════╝╚═╝ ╚═════╝ 
-</span>`;
+   ╚══════╝ ╚═════╝    ╚═╝   ╚══════╝╚═╝ ╚═════╝ `;
     
     const skillsList = Object.keys(areasSkills["Front-end"]).slice(0, 5).join(", ");
     const backendList = Object.keys(areasSkills["Back-end"]).slice(0, 5).join(", ");
     
-    const info = `
-<span class="neofetch-label">user</span>@<span class="neofetch-label">mr-utzig</span>
+    const info = `<span class="neofetch-label">user</span>@<span class="neofetch-label">mr-utzig</span>
 ─────────────────────────
 <span class="neofetch-key">Name:</span> Luiz Otavio Utzig Monteiro
 <span class="neofetch-key">Role:</span> Full-stack Developer @ SAP
@@ -100,44 +97,30 @@ function getNeofetch(): string {
 
 <span class="neofetch-colors">████████████████████████</span>`;
     
-    return `<div class="neofetch">${ascii}<div class="neofetch-info">${info}</div></div>`;
+    return `<div class="neofetch"><pre class="neofetch-logo">${ascii}</pre><pre class="neofetch-info">${info}</pre></div>`;
 }
 
-// Hacking animation
-function startHacking(): void {
-    isHacking.set(true);
-    
+// Hacking animation - returns all lines as HTML with staggered animation
+function getHackingOutput(): string {
     const hackingLines = [
         "Initializing hack sequence...",
-        "Bypassing firewall... [OK]",
-        "Injecting payload... [OK]",
+        "Bypassing firewall... <span class='hack-ok'>[OK]</span>",
+        "Injecting payload... <span class='hack-ok'>[OK]</span>",
         "Accessing mainframe...",
-        "Decrypting password: ********",
-        "Gaining root access... [OK]",
+        "Decrypting password: <span class='hack-password'>********</span>",
+        "Gaining root access... <span class='hack-ok'>[OK]</span>",
         "Downloading secret files...",
-        "Covering tracks... [OK]",
-        "H4CK C0MPL3T3!",
+        "Covering tracks... <span class='hack-ok'>[OK]</span>",
+        "<span class='hack-complete'>H4CK C0MPL3T3!</span>",
         "",
-        "(Just kidding, this is fake 😄)",
-        "Press ESC to exit"
+        "<span class='hack-joke'>(Just kidding, this is fake 😄)</span>",
     ];
     
-    let currentLine = 0;
-    const outputEl = document.querySelector('.terminal-content');
+    const lines = hackingLines.map((line, i) => 
+        `<div class="hack-line" style="animation-delay: ${i * 0.4}s">${line}</div>`
+    ).join('');
     
-    const interval = setInterval(() => {
-        if (currentLine < hackingLines.length && outputEl) {
-            const line = document.createElement('div');
-            line.className = 'hacking-line';
-            line.textContent = hackingLines[currentLine];
-            outputEl.appendChild(line);
-            currentLine++;
-            outputEl.scrollTop = outputEl.scrollHeight;
-        } else {
-            clearInterval(interval);
-            setTimeout(() => isHacking.set(false), 3000);
-        }
-    }, 500);
+    return `<div class="hack-output">${lines}</div>`;
 }
 
 export const commands: ICommands = {
@@ -316,8 +299,10 @@ export const commands: ICommands = {
         description: "Initiate hacking sequence (just for fun)",
         options: {},
         exec() {
-            startHacking();
-            return getOutput("");
+            isRunning.set(true);
+            // Duration: 11 lines * 0.4s delay + 0.3s animation = ~4.7s
+            setTimeout(() => isRunning.set(false), 4700);
+            return getOutput(getHackingOutput());
         }
     },
     cowsay: {
