@@ -17,24 +17,57 @@
 	line-height: 1.5;
 	font-size: 10px;
 
-	cursor: text;
+	cursor: default;
 
-	--main-color: #ff3e00;
-	--second-color: #e66f47;
-	--third-color: #2e2e2e;
-	--surface-color: #444444;
-	--gray-color: #c4c4c4;
-	--light-gray-color: #e6e6e6;
-	--light-color: #F8F8F2;
-	--dark-color: #272822;
-	--darker-color: #1a1a1a;
+	/* Tokyo Night Color Palette */
+	--tn-red: #f7768e;
+	--tn-orange: #ff9e64;
+	--tn-yellow: #e0af68;
+	--tn-param: #cfc9c2;
+	--tn-green: #9ece6a;
+	--tn-teal: #73daca;
+	--tn-cyan-light: #b4f9f8;
+	--tn-cyan: #2ac3de;
+	--tn-blue-light: #7dcfff;
+	--tn-blue: #7aa2f7;
+	--tn-purple: #bb9af7;
+	--tn-white: #c0caf5;
+	--tn-foreground: #a9b1d6;
+	--tn-text: #9aa5ce;
+	--tn-comment: #565f89;
+	--tn-black: #414868;
+	--tn-bg-storm: #24283b;
+	--tn-bg-night: #1a1b26;
 
-	--terminal-green-color: #a6e22e;
-	--terminal-blue-color: #66d9ef;
+	/* Matrix Green */
+	--matrix-green: #00ff41;
+	--matrix-green-dim: #008f11;
+	--matrix-green-glow: rgba(0, 255, 65, 0.5);
+
+	/* Semantic Colors */
+	--main-color: var(--tn-blue);
+	--second-color: var(--tn-teal);
+	--accent-color: var(--matrix-green);
+	--third-color: var(--tn-bg-night);
+	--surface-color: var(--tn-bg-storm);
+	--surface-hover: #2a2f4a;
+	--gray-color: var(--tn-comment);
+	--light-gray-color: var(--tn-foreground);
+	--light-color: var(--tn-white);
+	--dark-color: var(--tn-bg-storm);
+	--darker-color: var(--tn-bg-night);
+
+	/* Terminal Colors (keep for terminal mode) */
+	--terminal-green-color: var(--matrix-green);
+	--terminal-blue-color: var(--tn-cyan);
 	--terminal-fake-cursor-width: 0.923rem;
 
-	color: var(--light-color);
-	background-color: var(--third-color);
+	/* Glassmorphism */
+	--glass-bg: rgba(36, 40, 59, 0.8);
+	--glass-border: rgba(192, 202, 245, 0.1);
+
+	color: var(--tn-foreground);
+	background-color: var(--tn-bg-night);
 
 	font-synthesis: none;
 	text-rendering: optimizeLegibility;
@@ -43,16 +76,32 @@
 	-webkit-text-size-adjust: 100%;
 }
 
+/* Smooth scrolling */
+html {
+	scroll-behavior: smooth;
+}
+
+/* Selection colors */
+::selection {
+	background-color: var(--tn-blue);
+	color: var(--tn-bg-night);
+}
+
 ::-webkit-scrollbar {
 	width: .5rem;
 }
 
 ::-webkit-scrollbar-track {
-	background: var(--dark-color);
+	background: var(--tn-bg-night);
 }
 
 ::-webkit-scrollbar-thumb {
-	background: var(--light-color);
+	background: var(--tn-blue);
+	border-radius: 0.25rem;
+}
+
+::-webkit-scrollbar-thumb:hover {
+	background: var(--tn-purple);
 }
 
 * {
@@ -62,4 +111,74 @@
 body {
 	margin: 0;
 	min-width: 320px;
+	overflow-x: hidden;
+}
+
+/* Utility Classes */
+.glow-text {
+	text-shadow: 0 0 10px var(--matrix-green-glow), 0 0 20px var(--matrix-green-glow);
+}
+
+.gradient-text {
+	background: linear-gradient(135deg, var(--tn-blue), var(--tn-purple), var(--tn-teal));
+	-webkit-background-clip: text;
+	-webkit-text-fill-color: transparent;
+	background-clip: text;
+}
+
+/* Animation keyframes */
+@keyframes fadeInUp {
+	from {
+		opacity: 0;
+		transform: translateY(30px);
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes pulse {
+	0%, 100% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0.5;
+	}
+}
+
+@keyframes glow {
+	0%, 100% {
+		box-shadow: 0 0 5px var(--matrix-green-glow), 0 0 10px var(--matrix-green-glow);
+	}
+	50% {
+		box-shadow: 0 0 20px var(--matrix-green-glow), 0 0 30px var(--matrix-green-glow);
+	}
+}
+
+@keyframes float {
+	0%, 100% {
+		transform: translateY(0);
+	}
+	50% {
+		transform: translateY(-10px);
+	}
+}
+
+@keyframes typing {
+	from {
+		width: 0;
+	}
+	to {
+		width: 100%;
+	}
+}
+
+@keyframes blink {
+	0%, 50% {
+		border-color: var(--matrix-green);
+	}
+	51%, 100% {
+		border-color: transparent;
+	}
 }

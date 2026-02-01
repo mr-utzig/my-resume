@@ -124,7 +124,10 @@ export const areasSkills: IResumeAreasSkills = {
         "CodeIgniter": 8,
         "Node.js": 8,
         "GoLang": 8,
+        "Java": 7,
+        "Spring Boot": 7,
         "Python": 7,
+        "Microservices": 7,
         "Kafka": 5,
         "RabbitMQ": 5,
     },
@@ -142,11 +145,17 @@ export const areasSkills: IResumeAreasSkills = {
         "SQL": 9,
         "MySQL": 8,
         "PostgreSQL": 7,
+        "SAP HANA": 7,
         "SQLite": 6,
         "Turso": 6,
         "NoSQL": 7,
         "MongoDB": 7,
         "Cassandra": 6,
+    },
+    "SAP": {
+        "SAP S/4HANA": 7,
+        "CAP": 7,
+        "SAPUI5": 6,
     }
 };
 
@@ -235,15 +244,15 @@ export const contacts: IResumeContact[] = [
                 </a>`;
         }
     },
-    {
-        label: "Send an email",
-        value: `mailto:${email}`,
-        icon: EmailIcon,
-        render() {
-            return `<a href="${this.value}">
-                    <img src="${this.icon}" width="25" height="25">
-                    <span>${this.label}</span>
-                </a>`
-        }
-    }
+    // {
+    //     label: "Send an email",
+    //     value: `mailto:${email}`,
+    //     icon: EmailIcon,
+    //     render() {
+    //         return `<a href="${this.value}">
+    //                 <img src="${this.icon}" width="25" height="25">
+    //                 <span>${this.label}</span>
+    //             </a>`
+    //     }
+    // }
 ]
