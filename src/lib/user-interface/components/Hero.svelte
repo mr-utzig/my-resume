@@ -54,10 +54,11 @@
 
         function draw() {
             if (!ctx) return;
-            ctx.fillStyle = "rgba(26, 27, 38, 0.05)";
+            // Higher opacity for faster trail fade
+            ctx.fillStyle = "rgba(26, 27, 38, 0.25)";
             ctx.fillRect(0, 0, canvas.width, canvas.height);
 
-            ctx.fillStyle = "#00ff4120";
+            ctx.fillStyle = "#00ff4130";
             ctx.font = `${fontSize}px monospace`;
 
             for (let i = 0; i < drops.length; i++) {
