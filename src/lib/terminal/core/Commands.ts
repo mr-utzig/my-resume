@@ -2,7 +2,7 @@ import { navigate } from "svelte-navigator";
 import { history, showMatrix, isRunning } from "../store"
 import { Workspace } from "./Workspace";
 import { download, getYearsOfExperience } from "../../../assets/js/utils";
-import { resume, areasSkills, experiences, contacts, email } from "../../../assets/js/shared";
+import { resume, areasSkills, experiences, contacts, email, phone } from "../../../assets/js/shared";
 
 // Programming quotes for fortune command
 const fortunes = [
@@ -218,7 +218,7 @@ export const commands: ICommands = {
 💬 Telegram: @mr_utzig
 💼 LinkedIn: /in/mr-utzig
 🐙 GitHub: @mr-utzig
-📱 WhatsApp: +55 51 99632-6706`,
+📱 WhatsApp: ${phone}`,
             };
             
             if (!files[filename]) {

@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { contacts, email } from "../../../assets/js/shared";
+    import { contacts, email, phone, availableForOpportunities } from "../../../assets/js/shared";
     import { onMount } from "svelte";
 
     let visibleLinks: Set<number> = new Set();
@@ -91,7 +91,7 @@
                         <span class="link-label">{contact.label}</span>
                         <span class="link-hint">
                             {#if contact.label === "WhatsApp"}
-                                +55 51 99632-6706
+                                {phone}
                             {:else if contact.label === "Telegram"}
                                 @mr_utzig
                             {:else if contact.label === "LinkedIn"}
@@ -108,9 +108,13 @@
             {/each}
         </div>
 
-        <div class="availability">
+        <div class="availability" class:unavailable={!availableForOpportunities}>
             <span class="status-dot"></span>
-            <span class="status-text">Available for new opportunities</span>
+            <span class="status-text">
+                {availableForOpportunities
+                    ? "Available for new opportunities"
+                    : "Not available for new opportunities"}
+            </span>
         </div>
     </div>
 
@@ -328,6 +332,20 @@
     .status-text {
         font-size: 1.4rem;
         color: var(--matrix-green);
+    }
+
+    .availability.unavailable {
+        background: var(--tn-bg-storm);
+        border-color: var(--tn-comment);
+    }
+
+    .unavailable .status-dot {
+        background: var(--tn-comment);
+        animation: none;
+    }
+
+    .unavailable .status-text {
+        color: var(--tn-comment);
     }
 
     /* Responsive */

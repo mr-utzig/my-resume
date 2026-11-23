@@ -6,7 +6,14 @@ import EmailIcon from "../imgs/icons/email.svg";
 import LinkedInIcon from "../imgs/icons/linkedin.svg";
 import GitHubIcon from "../imgs/icons/github.svg";
 
-export const email = "lutzig.web.solutions@gmail.com";
+export const email = import.meta.env.VITE_CONTACT_EMAIL?.trim() || "hello@example.com";
+export const phone = import.meta.env.VITE_CONTACT_PHONE?.trim() || "+1 202 555 0123";
+
+const availability = import.meta.env.VITE_AVAILABLE_FOR_OPPORTUNITIES;
+if (availability !== undefined && availability !== "true" && availability !== "false") {
+    throw new Error("VITE_AVAILABLE_FOR_OPPORTUNITIES must be 'true' or 'false'.");
+}
+export const availableForOpportunities = availability !== "false";
 
 export const resume = {
     sections: {
@@ -203,7 +210,7 @@ export const contacts: IResumeContact[] = [
     {
         label: "WhatsApp",
         icon: WhatsAppIcon,
-        value: "https://wa.me/5551996326706",
+        value: `https://wa.me/${phone.replace(/\D/g, "")}`,
         render() {
             return `<a href="${this.value}" target="_blank">
                     <img src="${this.icon}" width="25" height="25">
